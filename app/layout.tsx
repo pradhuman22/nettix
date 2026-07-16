@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
+import { ThemeProvider } from "@/providers/theme-providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -22,11 +23,19 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("h-full font-sans antialiased", inter.variable)}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        <Header />
-        <main className="flex-1 grow">{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute={"class"}
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex-1 grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
