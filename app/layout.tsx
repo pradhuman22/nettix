@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Header from "@/components/shared/header";
 import Footer from "@/components/shared/footer";
 import { ThemeProvider } from "@/providers/theme-providers";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -35,6 +36,14 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 grow">{children}</main>
           <Footer />
+          <Toaster
+            toastOptions={{
+              classNames: {
+                error: "!bg-red-100 !text-red-600 !border-red-200",
+                success: "!bg-green-100 !text-green-600 !border-green-200",
+              },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>

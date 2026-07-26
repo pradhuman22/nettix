@@ -6,7 +6,7 @@ import AnimateOnScroll from "@/components/shared/animate-on-scroll";
 
 const HeroSection = () => {
   return (
-    <section className="relative grid items-center gap-10 overflow-hidden py-12 md:grid-cols-2 xl:py-16">
+    <section className="relative grid items-center gap-10 overflow-hidden py-12 md:grid-cols-2 xl:pt-24">
       {/* content section */}
       <div className="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
         <h1 className="text-5xl leading-tight font-black uppercase md:text-6xl">
@@ -19,12 +19,12 @@ const HeroSection = () => {
           for event-goers and organizers.
         </p>
         <Button className="mt-4 h-10 px-4" size={"lg"}>
-          <Link href={"/create"}>Check Your First Event</Link>
+          <Link href={"/create"}>Create Your First Event</Link>
         </Button>
       </div>
       {/* image section */}
       <AnimateOnScroll>
-        <div className="relative aspect-square w-auto md:h-[440px]">
+        <div className="relative aspect-square w-auto md:h-105">
           <Image
             src={"/hero.png"}
             alt="hero"

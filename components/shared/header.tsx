@@ -5,15 +5,11 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { mainMenus } from "@/constant";
 import { Button } from "../ui/button";
+import UserNavigation from "./user-navigation";
+import { getCurrentUser } from "@/lib/user";
 
 const Header = async () => {
-  const { isLoggedIn, user } = {
-    isLoggedIn: false,
-    user: {
-      name: "Shrestha Pradhuman",
-      email: "shresthapradhuman2020@gmail.com",
-    },
-  };
+  const { isLoggedIn, user } = await getCurrentUser();
   return (
     <HeaderWrapper>
       <div className="flex h-20 items-center justify-between gap-4 px-4">
@@ -56,12 +52,13 @@ const Header = async () => {
           <div className="flex items-center">
             <Link
               href={"/create"}
-              className={cn("hover:text-primary mr-4 text-base font-medium", {
+              className={cn("hover:text-primary mr-4 text-base font-normal", {
                 hidden: !isLoggedIn,
               })}
             >
               Create Events
             </Link>
+            <UserNavigation user={user} />
             <Link
               href={"/events"}
               className={cn("hover:text-primary mr-4 text-lg font-medium", {

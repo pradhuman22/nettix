@@ -24,6 +24,7 @@ model User {
   contact       String?
   sessions      Session[]
   accounts      Account[]
+  events        Event[]
 
   @@unique([email])
   @@map("user")
@@ -75,4 +76,37 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Event {
+  id           String    @id @default(uuid())
+  title        String
+  description  String?
+  venue        String?   @db.Text
+  latitude     Float?
+  longitude    Float?
+  schedule     DateTime?
+  occupancy    Int       @default(0)
+  price        Float     @default(0.00)
+  isPublished  Boolean   @default(false)
+  imageUrl     String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  instructor   User?     @relation(fields: [instructorId], references: [id])
+  instructorId String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  categoryId   String?
+
+  @@index([instructorId])
+  @@map("event")
+}
+
+model Category {
+  id    String  @id @default(uuid())
+  name  String  @unique
+  image String?
+
+  events Event[]
+
+  @@map("category")
 }
